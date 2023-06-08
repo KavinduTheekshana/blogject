@@ -42,6 +42,7 @@
           .post("/api/register", this.fields)
           .then(() => {
             this.$router.push({ name: "Dashboard" });
+            this.$emit("updateSidebar");
           })
           .catch((error) => {
             this.errors = error.response.data.errors;

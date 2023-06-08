@@ -8,9 +8,9 @@ import SingleBlog from "../pages/SingleBlog.vue";
 import Login from "../pages/Login.vue";
 import Register from "../pages/Register.vue";
 import Dashboard from "../pages/Dashboard.vue";
-// import CreateCategories from "../pages/categories/CreateCategories.vue";
-// import CategoriesList from "../pages/categories/CategoriesList.vue";
-// import EditCategories from "../pages/categories/EditCategories.vue";
+import CreateCategories from "../pages/categories/CreateCategories.vue";
+import CategoriesList from "../pages/categories/CategoriesList.vue";
+import EditCategories from "../pages/categories/EditCategories.vue";
 // import CreatePosts from "../pages/posts/CreatePosts.vue";
 // import DashboardPostsList from "../pages/posts/DashboardPostsList.vue";
 // import EditPosts from "../pages/posts/EditPosts.vue";
@@ -60,27 +60,27 @@ const routes = [
         component: Dashboard,
         meta: { requiresAuth: true }
     },
-    // {
-    //     path: "/categories/create",
-    //     name: "CreateCategories",
-    //     component: CreateCategories,
-    //     meta: { requiresAuth: true },
-    // },
+    {
+        path: "/categories/create",
+        name: "CreateCategories",
+        component: CreateCategories,
+        meta: { requiresAuth: true },
+    },
 
-    // {
-    //     path: "/categories",
-    //     name: "CategoriesList",
-    //     component: CategoriesList,
-    //     meta: { requiresAuth: true },
-    // },
+    {
+        path: "/categories",
+        name: "CategoriesList",
+        component: CategoriesList,
+        meta: { requiresAuth: true },
+    },
 
-    // {
-    //     path: "/categories/:id/edit",
-    //     name: "EditCategories",
-    //     component: EditCategories,
-    //     meta: { requiresAuth: true },
-    //     props: true
-    // },
+    {
+        path: "/categories/:id/edit",
+        name: "EditCategories",
+        component: EditCategories,
+        meta: { requiresAuth: true },
+        props: true
+    },
 
     // {
     //     path: "/posts/create",
@@ -110,18 +110,18 @@ const router = createRouter({
     routes,
 });
 
-// router.beforeEach((to, from) => {
-//     const authenticated = localStorage.getItem("authenticated");
+router.beforeEach((to, from) => {
+    const authenticated = localStorage.getItem("authenticated");
 
-//     if (to.meta.requiresGuest && authenticated) {
-//         return {
-//             name: "Dashboard",
-//         };
-//     } else if (to.meta.requiresAuth && !authenticated) {
-//         return {
-//             name: "Login",
-//         };
-//     }
-// });
+    if (to.meta.requiresGuest && authenticated) {
+        return {
+            name: "Dashboard",
+        };
+    } else if (to.meta.requiresAuth && !authenticated) {
+        return {
+            name: "Login",
+        };
+    }
+});
 
 export default router;
