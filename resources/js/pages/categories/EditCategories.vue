@@ -10,7 +10,7 @@
         <div class="contact-form">
           <form @submit.prevent="submit">
             <label for="name"><span>Name</span></label>
-            <input type="text" id="name" v-model="field.name" />
+            <input type="text" id="name" v-model="field.name"/>
             <span v-if="errors.name" class="error">{{ errors.name[0] }}</span>
   
             <input type="submit" value="Submit" />
@@ -47,6 +47,7 @@
   
             setInterval(() => {
               this.success = false;
+              this.$router.push({ name: "CategoriesList" });
             }, 2500);
           })
           .catch((error) => {

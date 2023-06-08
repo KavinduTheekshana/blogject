@@ -15,18 +15,17 @@
                         >Categories List</router-link
                     >
                 </li>
-                <!-- <li>
-                    <router-link>Create Posts</router-link>
+                <li>
+                    <router-link :to="{ name: 'CreatePosts' }"
+                        >Create Posts</router-link
+                    >
                 </li>
                 <li>
-                    <router-link>Posts List</router-link>
+                    <router-link :to="{ name: 'DashboardPostsList' }"
+                        >Posts List</router-link
+                    >
                 </li>
-                <li>
-                    <router-link>Create Categories</router-link>
-                </li>
-                <li>
-                    <router-link>Categories List</router-link>
-                </li> -->
+            
             </ul>
         </div>
     </div>
