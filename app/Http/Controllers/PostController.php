@@ -11,17 +11,17 @@ use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
-    // public function index(Request $request)
-    // {
-    //     if ($request->category) {
-    //         return PostResource::collection(Category::where('name', $request->category)->firstOrFail()->posts()->latest()->paginate(1)->withQueryString());
-    //     } else if ($request->search) {
-    //         return  PostResource::collection(Post::where('title', 'like', '%' . $request->search . '%')
-    //             ->orWhere('body', 'like', '%' . $request->search . '%')->latest()->paginate(1)->withQueryString());
-    //     }
+    public function index(Request $request)
+    {
+        if ($request->category) {
+            return PostResource::collection(Category::where('name', $request->category)->firstOrFail()->posts()->latest()->paginate(8)->withQueryString());
+        } else if ($request->search) {
+            return  PostResource::collection(Post::where('title', 'like', '%' . $request->search . '%')
+                ->orWhere('body', 'like', '%' . $request->search . '%')->latest()->paginate(1)->withQueryString());
+        }
 
-    //     return PostResource::collection(Post::latest()->paginate(1));
-    // }
+        return PostResource::collection(Post::latest()->paginate(1));
+    }
 
     public function store(Request $request)
     {
@@ -57,13 +57,13 @@ class PostController extends Controller
         $post->save();
     }
 
-    // public function show(Post $post)
-    // {
-    //     if (auth()->user()->id !== $post->user->id) {
-    //         return abort(403);
-    //     }
-    //     return new PostResource($post);
-    // }
+    public function show(Post $post)
+    {
+        if (auth()->user()->id !== $post->user->id) {
+            return abort(403);
+        }
+        return new PostResource($post);
+    }
 
     public function update(Request $request, Post $post)
     {

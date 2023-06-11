@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardPostController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -37,3 +39,8 @@ Route::get('categories', [CategoryController::class, 'index']);
 Route::middleware('auth:sanctum')->post('posts', [PostController::class, 'store']);
 Route::middleware('auth:sanctum')->put('posts/{post:slug}', [PostController::class, 'update']);
 Route::middleware('auth:sanctum')->delete('posts/{post:slug}', [PostController::class, 'destroy']);
+Route::get('home-posts', [HomeController::class, 'index']);
+Route::get('posts/{post:slug}', [PostController::class, 'show']);
+Route::get('posts', [PostController::class, 'index']);
+Route::get('related-posts/{post:slug}', [RelatedPostController::class, 'index']);
+Route::get('dashboard-posts', [DashboardPostController::class, 'index']);
