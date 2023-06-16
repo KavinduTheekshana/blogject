@@ -13,5 +13,7 @@
 .router-link-active{
     color: rgb(250, 204, 21);
 }
-
+#pagination .active{
+    color: rgb(250, 204, 21);
+}
   

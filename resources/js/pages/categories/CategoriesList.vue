@@ -19,18 +19,11 @@
     <!-- success message -->
     <div class="fixed absolute bottom-20 right-10 bg-green-500 rounded-md px-8 py-3 text-white" v-if="success">
 
-      Deleted successfully
+      Category Deleted successfully
     </div>
 
 
-    <div class="flex flex-col max-w-4xl rounded overflow-hidden shadow-lg mt-16 ml-auto mr-auto max-w-lg p-5 my-40 ">
-
-
-
-
-
-
-
+    <div class="flex flex-col max-w-4xl rounded overflow-hidden shadow-lg mt-16 ml-auto mr-auto p-5 my-40 ">
       <table class="min-w-full">
         <thead>
           <tr>

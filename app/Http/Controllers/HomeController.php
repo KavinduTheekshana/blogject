@@ -10,6 +10,6 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return PostResource::collection(Post::latest()->take(4)->get());
+        return PostResource::collection(Post::latest()->with('category')->take(4)->get());
     }
 }

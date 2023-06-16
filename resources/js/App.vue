@@ -13,7 +13,7 @@
             <div class="hidden md:flex items-center space-x-4">
               <router-link
                 class="text-gray-600 hover:text-gray-800 px-4 font-poppins font-400 text-lg text-white hover:text-yellow-400"
-                :to="{ name: 'Home' }" @click="headerStyle">Home</router-link>
+                :to="{ name: 'Home' }">Home</router-link>
               <router-link
                 class="text-gray-600 hover:text-gray-800 px-4 font-poppins font-400 text-lg text-white hover:text-yellow-400"
                 :to="{ name: 'Articles' }">Articles</router-link>
@@ -42,8 +42,8 @@
     <main>
       <!-- render components depending on the page visited -->
 
-      <router-view @update-sidebar="updateSidebar" @show-edit-success="showEditSuccess"
-        :editSuccess="editSuccess" :key="$route.path"></router-view>
+      <router-view @update-sidebar="updateSidebar" 
+        :key="$route.path"></router-view>
     </main>
 
 
@@ -177,6 +177,12 @@
 
 
   </div>
+
+  <footer class="bottom-0 left-0 right-0 bg-gray-300 py-4">
+        <div class="container mx-auto text-center">
+          <p class="text-gray-600">© 2023 BLOGJECT. All rights reserved.</p>
+        </div>
+      </footer>
 </template>
 <script>
 export default {
@@ -192,9 +198,6 @@ export default {
     };
   },
   methods: {
-    // getImageUrl(path) {
-    //   return require(`@/assets/${path}`);
-    // },
     openLoginModal() {
       this.showLoginModal = true;
     },
@@ -238,9 +241,7 @@ export default {
     updateSidebar() {
       this.loggedIn = !this.loggedIn;
     },
-    showEditSuccess() {
-      this.editSuccess = true;
-    },
+
   },
 
   mounted() {

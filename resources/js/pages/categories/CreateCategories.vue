@@ -18,40 +18,41 @@
 
 
 
-  <div id="create-categories">
-
-      <!-- success message -->
-      <div class="absolute bottom-20 right-10 bg-green-500 rounded-md px-8 py-3 text-white" v-if="success">
-        <box-icon name='check'></box-icon>
-        <i class='bx bx-check'></i>
-        Category created successfully
-      </div>
 
 
-      <div class="container max-w-5xl p-24 m-auto">
+  <!-- success message -->
+  <div class="absolute bottom-20 right-10 bg-green-500 rounded-md px-8 py-3 text-white" v-if="success">
+    <box-icon name='check'></box-icon>
+    <i class='bx bx-check'></i>
+    Category created successfully
+  </div>
+
+
+  <div class="container max-w-5xl p-24 m-auto">
     <h1 class="text-4xl font-bold mx-auto text-center p-12">Create New Category!</h1>
     <form @submit.prevent="submit" class="bg-white shadow-md rounded px-8 py-6 mx-auto mt-auto">
-    <div class="mb-4">
-      <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-        Category Name
-      </label>
-      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="name" v-model="field.name" placeholder="Enter your category Name">
-      <span v-if="errors.name" class="error">{{ errors.name[0] }}</span>
-    </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+          Category Name
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          type="text" id="name" v-model="field.name" placeholder="Enter your category Name">
+        <span v-if="errors.name" class="error">{{ errors.name[0] }}</span>
+      </div>
 
-    <div class="flex items-center justify-between">
-      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" value="Submit">
-    Submit
-      </button>
-      <router-link :to="{ name: 'CategoriesList' }" class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
-        Categories List <span>&#8594;</span>
-      </router-link>
-    </div>
-  </form>
-</div>
-
- 
-
+      <div class="flex items-center justify-between">
+        <button
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          type="submit" value="Submit">
+          Submit
+        </button>
+        <router-link :to="{ name: 'CategoriesList' }"
+          class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
+          Categories List <span>&#8594;</span>
+        </router-link>
+      </div>
+    </form>
   </div>
 </template>
   

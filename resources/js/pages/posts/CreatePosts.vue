@@ -1,65 +1,97 @@
 <template>
-    <main class="create-post">
-        <div class="container">
-            <h1>Create Posts!</h1>
-            <!-- success message -->
-            <div class="success-msg" v-if="success">
-                <i class="fa fa-check"></i>
-                Post created successfully
-            </div>
-            <!-- Contact Form -->
-            <div class="contact-form">
-                <form @submit.prevent="submit">
-                    <!-- Title -->
-                    <label for="title"><span>Title</span></label>
-                    <input type="text" id="title" v-model="fields.title" />
-                    <span v-if="errors.title" class="error">{{
-                        errors.title[0]
-                    }}</span>
-                    <br />
-
-                    <!-- Image -->
-                    <label for="image"><span>Image</span></label>
-                    <input type="file" id="image" @input="grabFile" />
-                    <span v-if="errors.file" class="error">{{
-                        errors.file[0]
-                    }}</span>
-                    <div class="preview">
-                        <img :src="url" alt="" />
+    <div class="w-full bg-center bg-no-repeat bg-cover overflow-hidden">
+        <div class="bg-gradient-to-tr h-full z-10 opacity-80"
+            style="background-image: linear-gradient(45deg, #f200ff 0%, #ffba42 100%);">
+            <div class="container mx-auto h-full">
+                <div class="h-[80%] flex items-center py-10">
+                    <div class="mt-[10%]">
+                        <h2 class="text-white font-poppins font-normal text-[18px] ml-3">BLOGJECT > CREATE POST</h2>
+                        <h1 class="text-white font-poppins font-black leading-[1] text-[8vw]">CREATE POST</h1>
                     </div>
-                    <br />
-
-                    <!-- Drop down -->
-                    <label for="categories"
-                        ><span>Choose a category:</span></label
-                    >
-                    <select v-model="fields.category_id" id="categories">
-                        <option disabled value="">Select option</option>
-                        <option
-                            :value="category.id"
-                            v-for="category in categories"
-                            :key="category.id"
-                        >
-                            {{ category.name }}
-                        </option>
-                    </select>
-                    <span v-if="errors.category_id" class="error">{{
-                        errors.category_id[0]
-                    }}</span>
-                    <br />
-
-                    <!-- Body-->
-                    <label for="body"><span>Body</span></label>
-                    <textarea id="body" v-model="fields.body"></textarea>
-                    <span v-if="errors.body" class="error">{{
-                        errors.body[0]
-                    }}</span>
-                    <!-- Button -->
-                    <input class="add-post-btn" type="submit" value="Submit" />
-                </form>
+                </div>
             </div>
         </div>
-    </main>
+    </div>
+
+
+    <!-- success message -->
+    <div class="absolute bottom-20 right-10 bg-green-500 rounded-md px-8 py-3 text-white" v-if="success">
+        <box-icon name='check'></box-icon>
+        <i class='bx bx-check'></i>
+        Post created successfully
+    </div>
+
+
+    <div class="container max-w-5xl p-24 m-auto">
+        <h1 class="text-4xl font-bold mx-auto text-center p-12">Create New Post!</h1>
+        <form @submit.prevent="submit" class="bg-white shadow-md rounded px-8 py-6 mx-auto mt-auto">
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                    Post Title
+                </label>
+                <input
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    type="text" id="title" v-model="fields.title" placeholder="Enter your Post Title">
+                <span v-if="errors.title" class="error">{{ errors.title[0] }}</span>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                    Image
+                </label>
+                <input
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    type="file" id="image" @input="grabFile">
+                <span v-if="errors.file" class="error">{{ errors.file[0] }}</span>
+
+                <div>
+                    <img class="max-w-full max-h-56" :src="url" alt="" />
+                </div>
+            </div>
+
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                    Choose a category:
+                </label>
+                <select
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    v-model="fields.category_id" id="categories">
+                    <option disabled value="">Select option</option>
+                    <option :value="category.id" v-for="category in categories" :key="category.id">
+                        {{ category.name }}
+                    </option>
+                </select>
+                <span v-if="errors.category_id" class="error">{{
+                    errors.category_id[0]
+                }}</span>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                    Body
+                </label>
+                <textarea
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    rows="12" id="body" v-model="fields.body"></textarea>
+                <span v-if="errors.body" class="error">{{
+                    errors.body[0]
+                }}</span>
+            </div>
+
+            <div class="flex items-center justify-between">
+                <button
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    type="submit" value="Submit">
+                    Submit
+                </button>
+                <router-link :to="{ name: 'DashboardPostsList' }"
+                    class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
+                    Post List <span>&#8594;</span>
+                </router-link>
+            </div>
+        </form>
+    </div>
 </template>
 
 <script>
@@ -116,43 +148,3 @@ export default {
     },
 };
 </script>
-
-<style scoped>
-.create-post {
-    background-color: #fff;
-    padding: 0 3vw;
-}
-.container input,
-textarea,
-select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    margin-top: 6px;
-    margin-bottom: 20px;
-    font-size: 16px;
-}
-h1 {
-    text-align: center;
-    padding: 60px 0 50px 0;
-}
-
-.add-post-btn {
-    background-color: black;
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: 0.3s ease;
-}
-
-.add-post-btn:hover {
-    transform: translateY(-4px);
-}
-
-.preview img {
-    max-width: 100%;
-    max-height: 120px;
-}
-</style>
